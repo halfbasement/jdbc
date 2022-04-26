@@ -13,7 +13,7 @@ import java.sql.*;
 public class MemberRepositoryV0 {
 
     public Member save(Member member) throws SQLException {
-        String sql = "insert into member(member_id,money) value (?,?)";
+        String sql = "insert into member(member_id,money) values (?,?)";
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -23,6 +23,7 @@ public class MemberRepositoryV0 {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, member.getMemberId());
             pstmt.setInt(2, member.getMoney());
+            pstmt.executeUpdate();
             return member;
         } catch (SQLException e) {
             log.error("db error", e);
@@ -31,6 +32,11 @@ public class MemberRepositoryV0 {
             close(con, pstmt, null);
         }
     }
+
+
+
+
+
 
     private void close(Connection con, Statement stmt, ResultSet rs) {
 
