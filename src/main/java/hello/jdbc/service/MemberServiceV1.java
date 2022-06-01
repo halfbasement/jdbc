@@ -22,7 +22,6 @@ public class MemberServiceV1 {
         //입
         memberRepository.update(toId,toMember.getMoney() + money);
 
-
     }
 
     private void validation(Member toMember) {
